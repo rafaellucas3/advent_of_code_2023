@@ -21,7 +21,7 @@ Advent of Code is an annual event where participants solve daily coding puzzles 
 ## Challenges and Learning Highlights
 
 - **Day [1]:** Having to deal with decisions made on the first part of the test was a challenge. My approach didn't use regex on the first part so the second part took a little bit more involvement to finish.
-
+- **Day [2]:** Creating the parser for this day was super fun. OOP is my passion. Had a lot of fun on this one.
 
 ## Reflections
 
