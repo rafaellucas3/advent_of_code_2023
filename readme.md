@@ -18,13 +18,11 @@ Advent of Code is an annual event where participants solve daily coding puzzles 
 - **Learning:** Emphasize learning and understanding over just finding the solution.
 - **Code Quality:** Focus on writing clean, efficient, and well-documented code.
 
-## Challenges and Learning Highlights
+## Reflections
 
 - **Day [1]:** Having to deal with decisions made on the first part of the test was a challenge. My approach didn't use regex on the first part so the second part took a little bit more involvement to finish.
 - **Day [2]:** Creating the parser for this day was super fun. OOP is my passion. Had a lot of fun on this one.
-
-## Reflections
-
+- **Day [3]:** Another day that I am using OOP to solve the problem. I hated having coding the first part focusing on the number instead of the symbol. I had to literally refactor the code to be symbol-centric lol. 
 
 ## Acknowledgments
 

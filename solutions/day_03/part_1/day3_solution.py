@@ -1,5 +1,4 @@
 import os
-from math import prod
 
 BASE_DIRECTORY = os.getcwd()
 SOLUTION_DIRECTORY = os.path.join(BASE_DIRECTORY, "solutions/day_03/part_1")
@@ -10,8 +9,7 @@ class Number:
         self.row = row
         self.start_index = start_index
         self.finish_index = finish_index
-        self.valid = False
-        
+    
     def __repr__(self):
         return f"Number({self.value}, {self.row}, {self.start_index}, {self.finish_index})"
     
@@ -21,15 +19,14 @@ class Number:
                 row = row.replace(char, ".")
         return row
     
-    def _get_slice(self, row):
+    def _get_slice(self, row, start_index, finish_index):
         row_slice = ''
-
-        if self.start_index > 0 and self.finish_index < len(row) and row != None:
-            row_slice = row[self.start_index-1:self.finish_index+1]
-        elif self.start_index == 0 and row != None:
-            row_slice = row[self.start_index:self.finish_index + 1]
-        elif self.finish_index == len(row) and row != None:
-            row_slice = row[self.start_index - 1:self.finish_index]
+        if start_index > 0 and finish_index < len(row) and row != None:
+            row_slice = row[start_index-1:finish_index+1]
+        elif start_index == 0 and row != None:
+            row_slice = row[start_index:finish_index + 1]
+        elif finish_index == len(row) and row != None:
+            row_slice = row[start_index - 1:finish_index]
         return row_slice
     
     def is_part_number(self, data):        
@@ -41,28 +38,28 @@ class Number:
         data_row_symbols = self._get_symbols_mask(data_row)
         next_row_symbols = self._get_symbols_mask(next_row) if next_row != None else None 
 
-        previous_row_slice = self._get_slice(previous_row_symbols) if previous_row != None else None
-        data_row_slice = self._get_slice(data_row_symbols)
-        next_row_slice = self._get_slice(next_row_symbols) if next_row != None else None
-        
-        previous_row_symbols = previous_row_slice.replace(".", "") if previous_row != None else None
-        data_row_symbols = data_row_slice.replace(".", "")
-        next_row_symbols = next_row_slice.replace(".", "") if next_row != None else None        
-        
-        if previous_row_symbols != None:
-            if len(previous_row_symbols) > 0:
+        previous_row_slice = self._get_slice(previous_row_symbols, self.start_index, self.finish_index) if previous_row != None else None
+        data_row_slice = self._get_slice(data_row_symbols, self.start_index, self.finish_index)
+        next_row_slice = self._get_slice(next_row_symbols, self.start_index, self.finish_index) if next_row != None else None
+
+        previous_row_symbols_sanitized = previous_row_slice.replace(".", "") if previous_row != None else None
+        data_row_symbols_sanitized = data_row_slice.replace(".", "")
+        next_row_symbols_sanitized = next_row_slice.replace(".", "") if next_row != None else None  
+
+        if previous_row_symbols_sanitized != None:
+            if len(previous_row_symbols_sanitized) > 0:
                 return True
         
-        if next_row_symbols != None:
-            if len(next_row_symbols) > 0:
+        if next_row_symbols_sanitized != None:
+            if len(next_row_symbols_sanitized) > 0:
                 return True
         
-        if data_row_symbols != None:
-            if len(data_row_symbols) > 0:
+        if data_row_symbols_sanitized != None:
+            if len(data_row_symbols_sanitized) > 0:
                 return True
 
         return False
-    
+
 if __name__ == "__main__":
         
     with open(f"{SOLUTION_DIRECTORY}/input.txt") as f:
